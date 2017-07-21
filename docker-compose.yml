@@ -1,0 +1,16 @@
+version: '2'
+services:
+        poc-matricula:
+                build: ../poc-matricula
+                ports:
+                        - "1000:8080"
+                volumes:
+                        - ../poc-matricula:/code
+        db:
+                build: ../poc-db
+                environment:
+                        MYSQL_ROOT_PASSWORD: root
+                        MYSQL_DATABASE: poc
+                ports:
+                        - "3306:3306"
+
