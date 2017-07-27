@@ -8,9 +8,6 @@ services:
                         - ../poc-matricula:/code
         db:
                 build: ../poc-db
-                environment:
-                        MYSQL_ROOT_PASSWORD: root
-                        MYSQL_DATABASE: poc
                 ports:
                         - "3306:3306"
 
