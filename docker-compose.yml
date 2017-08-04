@@ -4,10 +4,14 @@ services:
                 build: ../poc-matricula
                 ports:
                         - "1000:8080"
-                volumes:
-                        - ../poc-matricula:/code
+                links:
+                        - db
         db:
                 build: ../poc-db
                 ports:
                         - "3306:3306"
+        cobol:
+                build: ../plataforma-legada-ws
+                ports:
+                        - "1001:8080"
 
