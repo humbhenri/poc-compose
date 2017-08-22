@@ -47,6 +47,6 @@ services:
                 hostname: cobol
                 build: ../plataforma-legada-ws
                 ports:
-                        - "1001:8080"
+                        - "8080:8080"
                 links:
                         - db
