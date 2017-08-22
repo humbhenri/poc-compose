@@ -2,6 +2,8 @@
 Executa a aplicação inteira via containers docker.
 ## Dependências
 - git
+- maven
+- jdk8
 - docker e docker-compose
 ## Modo de uso
 Em uma pasta limpa, baixar todos os módulos e executar `mvn clean package -Pdocker`. O seguinte script pode ser usado para facilitar.
