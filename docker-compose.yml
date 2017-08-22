@@ -1,17 +1,52 @@
 version: '2'
 services:
-        poc-matricula:
-                build: ../poc-matricula
-                ports:
-                        - "1000:8080"
-                links:
-                        - db
         db:
+                hostname: db
                 build: ../poc-db
                 ports:
                         - "3306:3306"
+        eureka:
+                hostname: eureka
+                build: ../poc-service-discovery
+                ports:
+                        - "8761:8761"
+        matricula:
+                hostname: matricula
+                build: ../poc-matricula
+                ports:
+                        - "1002:8080"
+                links:
+                        - db
+                        - eureka
+                environment:
+                        WAIT_HOSTS: db:3306
+                        WAIT_HOSTS_TIMEOUT: 90
+        integracao:
+                hostname: integracao
+                build: ../poc-integracao
+                ports:
+                        - "1003:8080"
+                links:
+                        - db
+                        - eureka
+                environment:
+                        WAIT_HOSTS: db:3306
+                        WAIT_HOSTS_TIMEOUT: 90
+        apigateway:
+                hostname: apigateway
+                build: ../poc-apigateway
+                ports:
+                        - "80:8080"
+                links:
+                        - db
+                        - eureka
+                environment:
+                        WAIT_HOSTS: db:3306
+                        WAIT_HOSTS_TIMEOUT: 90
         cobol:
+                hostname: cobol
                 build: ../plataforma-legada-ws
                 ports:
                         - "1001:8080"
-
+                links:
+                        - db
