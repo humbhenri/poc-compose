@@ -13,13 +13,6 @@ do
 	git clone "https://github.com/humbhenri/$repo.git"
 done
 
-for project in poc-models poc-cursos poc-apigateway poc-integracao poc-matricula poc-service-discovery plataforma-legada-ws
-do 
-	cd "$project"
-	mvn clean package install -Pdocker
-	cd ..
-done
-
 cd poc-compose
 docker-compose build
 docker-compose up -d
